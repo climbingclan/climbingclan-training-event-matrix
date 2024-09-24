@@ -1,10 +1,3 @@
-var server = '18.168.242.164';
-var port = 3306;
-var dbName = 'bitnami_wordpress';
-var username = 'gsheets';
-var password = 'eyai4yohF4uX8eeP7phoob';
-var url = 'jdbc:mysql://' + server + ':' + port + '/' + dbName;
-
 function readCragsData() {
   var conn = Jdbc.getConnection(url, username, password);
   var stmt = conn.createStatement();
@@ -58,7 +51,7 @@ setColoursFormat(sheet,"N2:N1000","","#FFFF8A")
 
 
 
- 
+
   var arr = [];
   for (var col = 0; col < numCols; col++) {
     arr.push(metaData.getColumnLabel(col + 1));
