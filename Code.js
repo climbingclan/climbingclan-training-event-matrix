@@ -1,12 +1,17 @@
-var server = '18.168.242.164';
-var port = 3306;
-var dbName = 'bitnami_wordpress';
-var username = 'gsheets';
-var password = 'eyai4yohF4uX8eeP7phoob';
-var url = 'jdbc:mysql://'+server+':'+port+'/'+dbName;
+const scriptProperties = PropertiesService.getScriptProperties();
+
+const server = scriptProperties.getProperty('cred_server');
+const port = parseInt(scriptProperties.getProperty('cred_port'), 10);
+const dbName = scriptProperties.getProperty('cred_dbName');
+const username = scriptProperties.getProperty('cred_username');
+const password = scriptProperties.getProperty('cred_password');
+const url = `jdbc:mysql://${server}:${port}/${dbName}`;
+const apidomain = scriptProperties.getProperty('cred_apidomain');
+const apiusername = scriptProperties.getProperty('cred_apiusername');
+const apipassword = scriptProperties.getProperty('cred_apipassword');
 
 
-   function setColoursFormat(sheet,cellrange,search, colour) { 
+   function setColoursFormat(sheet,cellrange,search, colour) {
   // Adds a conditional format rule to a sheet that causes all cells in range A1:B3 to turn red
   // if they contain a number between 1 and 10.
 
@@ -22,12 +27,12 @@ var url = 'jdbc:mysql://'+server+':'+port+'/'+dbName;
   sheet.setConditionalFormatRules(rules);
   }
 
-    function setWrapped(sheet,cellrange) { 
+    function setWrapped(sheet,cellrange) {
   var cellrange = sheet.getRange(cellrange);
   cellrange.setWrap(true);
     }
 
-    function setTextFormat(sheet,cellrange,search, colour) { 
+    function setTextFormat(sheet,cellrange,search, colour) {
   // Adds a conditional format rule to a sheet that causes all cells in range A1:B3 to turn red
   // if they contain a number between 1 and 10.
 
@@ -60,4 +65,4 @@ readGrades();
 
 stmt.close();
 
-} 
+}
